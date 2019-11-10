@@ -62,7 +62,7 @@
             </UniformGrid>
         </Grid>
         <StackPanel x:Name="timelineList" Grid.Row="1"/>
-        <Grid Grid.Row="2" Margin="30, 10, 30, 10">
+        <Grid Grid.Row="2" Margin="30, 0, 30, 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
