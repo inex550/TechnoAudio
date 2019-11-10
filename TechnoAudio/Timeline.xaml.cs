@@ -50,15 +50,14 @@ namespace TechnoAudio
 
         public void AddElement(string text, string textWihoutNum)
         {
-            if (endRow < 3) for (int i = 0; i <= endRow; i++)
-            {
-                if (i != endRow && endColumn >= 0)
-                    if (textWihoutNum == tmElementLists[i, endColumn].textWihoutNum)
-                    {
-                        MessageBox.Show("You cannot repeat an item multiple times", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                        return;
-                    }
-            }
+            if (endRow < 3 && text != "BLANK")
+                for (int i = 0; i <= endRow; i++)
+                    if (i != endRow && endColumn >= 0)
+                        if (textWihoutNum == tmElementLists[i, endColumn].textWihoutNum)
+                        {
+                            MessageBox.Show("You cannot repeat an item multiple times", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                            return;
+                        }
 
             if (endRow >= tmCount)
             {
