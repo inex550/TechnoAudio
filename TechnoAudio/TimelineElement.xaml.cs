@@ -20,7 +20,7 @@ namespace TechnoAudio
     /// </summary>
     public partial class TimelineElement : UserControl
     {
-        TmElementList parent;
+        readonly TmElementList parent;
 
         public double height;
         public double width;

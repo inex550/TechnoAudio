@@ -25,31 +25,34 @@ namespace TechnoAudio
     /// 
     public partial class MainWindow : Window
     {
-        Timeline timeline;
-        TimelineChecker tmChecker;
-
-        MediaElement player;
+        readonly Timeline timeline;
+        readonly TimelineChecker tmChecker;
+        readonly MediaElement player;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            player = new MediaElement();
-            player.LoadedBehavior = MediaState.Manual;
-            player.UnloadedBehavior = MediaState.Manual;
+            player = new MediaElement
+            {
+                LoadedBehavior = MediaState.Manual,
+                UnloadedBehavior = MediaState.Manual
+            };
 
             timeline = new Timeline(1900, 500);
             timeline.Setup(0, 6, 310, 3);
 
-            tmChecker = new TimelineChecker(timeline, timeline.width, this);
-            tmChecker.Margin = new Thickness(10, 0, 10, 5);
+            tmChecker = new TimelineChecker(timeline, timeline.width, this)
+            {
+                Margin = new Thickness(10, 0, 10, 5)
+            };
 
             timelineList.Children.Add(tmChecker);
             timelineList.Children.Add(timeline);
 
             tmChecker.timerSlider.ValueChanged += (o, e) =>
             {
-                if (tmChecker.timerSeconds != 0)
+                if (tmChecker.timerSeconds != 0 && isPlay)
                 {
                     for (int i = 0; i < timeline.tmCount; i++)
                     {
@@ -59,9 +62,12 @@ namespace TechnoAudio
                             continue;
                         }
                         timeline.tmElementLists[i, (int)tmChecker.timerSeconds].Active();
-                        if ((int)tmChecker.timerSeconds > 0) timeline.tmElementLists[i, (int)tmChecker.timerSeconds -1].DontActive();
+                        if ((int)tmChecker.timerSeconds > 0) timeline.tmElementLists[i, (int)tmChecker.timerSeconds - 1].DontActive();
                     }
                 }
+                else if (!isPlay)
+                    for (int i = 0; i < timeline.tmCount; i++)
+                        timeline.tmElementLists[i, (int)tmChecker.timerSeconds].DontActive();
             };
         }
 
@@ -71,20 +77,42 @@ namespace TechnoAudio
         {
             if (!isPlay)
             {
+                if (TimelineChecker.endSecond == 0)
+                {
+                    string src = $@"{Environment.CurrentDirectory}\Media\song0.mp3";
+                    if (File.Exists(src))
+                    {
+                        player.Source = new Uri(src, UriKind.Absolute);
+                        player.Play();
+                    }
+                    else MessageBox.Show($"Ringtone song0 in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                playPauseButton.Content = "Stop";
                 tmChecker.Play();
                 isPlay = true;
             }
             else
             {
+                isPlay = false;
+                playPauseButton.Content = "Play";
                 tmChecker.Reset();
-                tmChecker.Play();
-                isPlay = true;
             }
         }
 
         //Удаление всех элементов
-        private void StopButton_Click(object sender, RoutedEventArgs e) =>
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            Stop();
             timeline.RemoveAllElements();
+        }
+
+        public void Stop()
+        {
+            playPauseButton.Content = "Play";
+            tmChecker.Reset();
+            isPlay = false;
+        }
 
         string StrWithoutNumbers(string text)
         {

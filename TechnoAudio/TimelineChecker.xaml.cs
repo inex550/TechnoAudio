@@ -14,8 +14,9 @@ namespace TechnoAudio
         public double width;
 
         DispatcherTimer timer;
+        readonly MainWindow mainWindow;
 
-        MainWindow mainWindow;
+        public static int endSecond = 0;
 
         public TimelineChecker(Timeline tm, double width, MainWindow mainWindow)
         {
@@ -43,15 +44,17 @@ namespace TechnoAudio
 
         private void TimerTick(object sender, EventArgs e)
         {
-            if (timerSeconds >= timerSlider.Maximum)
+            if (timerSeconds > endSecond + 1)
             {
                 timerSlider.Value = timerSlider.Minimum;
                 timerSeconds = timerSlider.Minimum;
 
                 timer.Stop();
+
+                mainWindow.Stop();
             }
 
-            setTime((int)timerSeconds);
+            SetTime((int)timerSeconds);
             timerSlider.Value = timerSeconds;
 
             timerSeconds += 0.01;
@@ -70,7 +73,7 @@ namespace TechnoAudio
             timerSeconds = timerSlider.Minimum;
         }
 
-        public void setTime(int seconds)
+        public void SetTime(int seconds)
         {
             string m = (seconds / 60).ToString();
             if (m.Length < 2)

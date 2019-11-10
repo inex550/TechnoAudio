@@ -31,8 +31,7 @@ namespace TechnoAudio
         const int marginConst = 2;
 
         public int intervalCount;
-
-        List<TimelineMark> tmMarks = new List<TimelineMark>();
+        readonly List<TimelineMark> tmMarks = new List<TimelineMark>();
         public TmElementList[,] tmElementLists;
 
         public Timeline(int width, int height)
@@ -48,7 +47,6 @@ namespace TechnoAudio
 
         int endRow = 0;
         int endColumn = 0;
-        bool lastIsRemove = false;
 
         public void AddElement(string text, string textWihoutNum)
         {
@@ -62,15 +60,10 @@ namespace TechnoAudio
                     }
             }
 
-            if (lastIsRemove)
-            {
-                endRow += 1;
-                lastIsRemove = false;
-            }
-
             if (endRow >= tmCount)
             {
                 endColumn += 1;
+                TimelineChecker.endSecond += 1;
                 endRow = 0;
             }
             if (endColumn >= intervalCount)
@@ -92,6 +85,7 @@ namespace TechnoAudio
                     tmList.RemoveElement();
                 endRow = 0;
                 endColumn = 0;
+                TimelineChecker.endSecond = 0;
             }
             else MessageBox.Show("timeline so empty", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
