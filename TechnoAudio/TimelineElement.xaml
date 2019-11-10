@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="TechnoAudio.TimelineElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechnoAudio"
+             mc:Ignorable="d">
+    <Grid x:Name="tmGridElement">
+        <Rectangle x:Name="elementRect" Fill="Gray"/>
+        <TextBlock x:Name="textOnElemtnt" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

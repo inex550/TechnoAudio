@@ -1,0 +1,79 @@
+﻿<Window x:Class="TechnoAudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechnoAudio"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="ButtonDefault">
+            <Setter Property="Control.Margin" Value="4"/>
+        </Style>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="207*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <UniformGrid Rows="2">
+                <UniformGrid Columns="8">
+                    <Button x:Name="congas1" Content="CONGAS 1"
+                            Style="{StaticResource ButtonDefault}" Click="Congas1_Click"/>
+                    <Button x:Name="congas2" Content="CONGAS 2"
+                            Style="{StaticResource ButtonDefault}" Click="Congas2_Click"/>
+                    <Button x:Name="cymbals1" Content="CYMBALS 1"
+                            Style="{StaticResource ButtonDefault}" Click="Cymbals1_Click"/>
+                    <Button x:Name="cymbals2" Content="CYMBALS 2"
+                            Style="{StaticResource ButtonDefault}" Click="Cymbals2_Click"/>
+                    <Button x:Name="bassDrum" Content="BASS DRUM"
+                            Style="{StaticResource ButtonDefault}" Click="BassDrum_Click"/>
+                    <Button x:Name="Blank" Content="BLANK"
+                            Style="{StaticResource ButtonDefault}" Click="Blank_Click"/>
+                    <Button x:Name="bongos1" Content="BONGOS 1"
+                            Style="{StaticResource ButtonDefault}" Click="Bongos1_Click"/>
+                    <Button x:Name="bongos2" Content="BONGOS 2"
+                            Style="{StaticResource ButtonDefault}" Click="Bongos2_Click"/>
+                </UniformGrid>
+                <UniformGrid Columns="8">
+                    <Button x:Name="xylophone1" Content="XYLOPHONE 1"
+                            Style="{StaticResource ButtonDefault}" Click="Xylophone1_Click"/>
+                    <Button x:Name="xylophone2" Content="XYLOPHONE 2"
+                            Style="{StaticResource ButtonDefault}" Click="Xylophone2_Click"/>
+                    <Button x:Name="xylophone3" Content="XYLOPHONE 3"
+                            Style="{StaticResource ButtonDefault}" Click="Xylophone3_Click"/>
+                    <Button x:Name="xylophone4" Content="XYLOPHONE 4"
+                            Style="{StaticResource ButtonDefault}" Click="Xylophone4_Click"/>
+                    <Button x:Name="flute1" Content="FLUTE 1"
+                            Style="{StaticResource ButtonDefault}" Click="Flute1_Click"/>
+                    <Button x:Name="flute2" Content="FLUTE 2"
+                            Style="{StaticResource ButtonDefault}" Click="Flute2_Click"/>
+                    <Button x:Name="flute3" Content="FLUTE 3"
+                            Style="{StaticResource ButtonDefault}" Click="Flute3_Click"/>
+                    <Button x:Name="flute4" Content="FLUTE 4"
+                            Style="{StaticResource ButtonDefault}" Click="Flute4_Click"/>
+                </UniformGrid>
+            </UniformGrid>
+        </Grid>
+        <StackPanel x:Name="timelineList" Grid.Row="1"/>
+        <Grid Grid.Row="2" Margin="30, 10, 30, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="playPauseButton" Content="Play" FontSize="25" 
+                    Grid.Column="1" Width="150" Click="PlayPauseButton_Click"/>
+            <Button x:Name="stopButton" Content="Clear" FontSize="25"
+                    Grid.Column="2" Margin="25, 0, 0, 0" Width="150" Click="StopButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
