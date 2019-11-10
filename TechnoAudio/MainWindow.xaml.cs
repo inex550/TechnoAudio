@@ -77,7 +77,7 @@ namespace TechnoAudio
         {
             if (!isPlay)
             {
-                if (TmElementList.Count < 4)
+                if (TimelineChecker.endSecond == 0 && timeline.endRow == 0)
                 {
                     string src = $@"{Environment.CurrentDirectory}\Media\song0.mp3";
                     if (File.Exists(src))

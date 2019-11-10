@@ -45,8 +45,8 @@ namespace TechnoAudio
             tmBorder.Height = height;
         }
 
-        int endRow = 0;
-        int endColumn = 0;
+        public int endRow = 0;
+        public int endColumn = 0;
 
         public void AddElement(string text, string textWihoutNum)
         {
