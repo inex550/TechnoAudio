@@ -41,6 +41,9 @@ namespace TechnoAudio
         public string textWihoutNum;
         public string text;
 
+        public int row;
+        public int column;
+
         public static int Count { get; private set; }
 
         public TmElementList(Timeline parent, double width, double height)
@@ -86,10 +89,15 @@ namespace TechnoAudio
         public double SecondToValue(double seconds) =>
             width * (seconds - startSeconds) / (endSeconds - startSeconds);
 
-        public void AddElement(string text, string textWihoutNum)
+        public void AddElement(string text, string textWihoutNum, string data, int row, int column)
         {
+            this.row = row;
+            this.column = column;
+
             this.textWihoutNum = textWihoutNum;
             this.text = text;
+
+            this.data = data;
 
             Count += 1;
 
@@ -107,6 +115,8 @@ namespace TechnoAudio
             isTmElement = false;
 
             if (Count > 0) Count -= 1;
+
+            data = null;
         }
     }
 }

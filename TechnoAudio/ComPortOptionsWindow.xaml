@@ -1,0 +1,36 @@
+﻿<Window x:Class="TechnoAudio.ComPortOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechnoAudio"
+        mc:Ignorable="d"
+        Title="OptionsWindow" Height="139.5" Width="247.5">
+    <Grid>
+
+        <StackPanel Margin="5">
+            <ComboBox x:Name="COMPortList" IsEditable="True"/>
+
+            <Separator Opacity="0" Height="5"/>
+
+            <UniformGrid Columns="2">
+                <Label Content="Скорость:" FontSize="12"/>
+                <TextBox Text="9600" x:Name="speedBaudTextBox" TextAlignment="Center"/>
+            </UniformGrid>
+
+            <Separator Opacity="0" Height="5"/>
+
+            <UniformGrid Columns="2"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="refreshCOMPortsNamesButton" Content="Обновить" Click="RefreshCOMPortsNamesButton_Click" Height="25"/>
+                <Button x:Name="OpenPortButton" Content="Готово" Grid.Column="2" Click="OpenPortButton_Click" Height="25"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

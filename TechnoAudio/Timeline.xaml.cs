@@ -48,7 +48,7 @@ namespace TechnoAudio
         public int endRow = 0;
         public int endColumn = 0;
 
-        public void AddElement(string text, string textWihoutNum)
+        public void AddElement(string text, string textWihoutNum, string data)
         {
             if (endRow < 3 && text != "BLANK")
                 for (int i = 0; i <= endRow; i++)
@@ -71,7 +71,7 @@ namespace TechnoAudio
                 return;
             }
 
-            tmElementLists[endRow, endColumn].AddElement(text, textWihoutNum);
+            tmElementLists[endRow, endColumn].AddElement(text, textWihoutNum, data, endRow, endColumn);
 
             endRow += 1;
         }
@@ -80,13 +80,51 @@ namespace TechnoAudio
         {
             if (TmElementList.Count > 0)
             {
-                foreach (TmElementList tmList in tmElementLists)
-                    tmList.RemoveElement();
+                for (int i = 0; i < tmCount; i++)
+                    for (int j = 0; j < intervalCount; j++)
+                        tmElementLists[i, j].RemoveElement();
+
                 endRow = 0;
                 endColumn = 0;
                 TimelineChecker.endSecond = 0;
             }
             else MessageBox.Show("timeline so empty", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public string GetForSendPlayData()
+        {
+            string forReturnStrData = $"play";
+            
+            for (int i = 0; i < intervalCount; i++)
+            {
+                if (tmElementLists[0, i].data != null) forReturnStrData += $" {i + 1} ";
+
+                for (int j = 0; j < tmCount; j++)
+                {
+                    if (tmElementLists[j, i].data != null)
+                    {
+                        forReturnStrData += $"{tmElementLists[j, i].data}";
+                        if (GetNextElement(j, i).data != null) 
+                            forReturnStrData += ",";
+                    }
+                    else break;
+                }
+            }
+
+            return forReturnStrData;
+        }
+
+        TmElementList GetNextElement(int row, int column)
+        {
+            if (row == tmCount - 1)
+            {
+                if (column == intervalCount - 1) return null;
+                column += 1;
+                row = 0;
+            }
+            else row += 1;
+
+            return tmElementLists[row, column];
         }
 
         public void Setup(int startSeconds, int endSeconds, int space, int tmCount)

@@ -28,3 +28,5 @@ C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\TimelineChecker.g.
 C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\TimelineChecker.baml
 C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\TmElementList.g.cs
 C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\TmElementList.baml
+C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\ComPortOptionsWindow.g.cs
+C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\ComPortOptionsWindow.baml

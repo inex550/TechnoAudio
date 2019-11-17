@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TechnoAudio"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" 
+        WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None"
+        KeyDown="Window_KeyDown" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="ButtonDefault">
             <Setter Property="Control.Margin" Value="4"/>
@@ -71,9 +73,9 @@
             </Grid.ColumnDefinitions>
 
             <Button x:Name="playPauseButton" Content="Play" FontSize="25" 
-                    Grid.Column="1" Width="150" Click="PlayPauseButton_Click"/>
+                    Grid.Column="1" Width="200" Click="PlayPauseButton_Click"/>
             <Button x:Name="stopButton" Content="Clear" FontSize="25"
-                    Grid.Column="2" Margin="25, 0, 0, 0" Width="150" Click="StopButton_Click"/>
+                    Grid.Column="2" Margin="25, 0, 0, 0" Width="200" Click="StopButton_Click"/>
         </Grid>
     </Grid>
 </Window>

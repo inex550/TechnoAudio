@@ -29,6 +29,8 @@ namespace TechnoAudio
         readonly TimelineChecker tmChecker;
         readonly MediaElement player;
 
+        SerialPort musicPort;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,7 +73,41 @@ namespace TechnoAudio
             };
         }
 
-        //Play Pause
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            musicPort = new SerialPort();
+
+            if (!File.Exists("portOptions.txt"))
+            {
+                MessageBox.Show("File portOptions.txt is not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                ComPortOptionsWindow comPortOptionsWindow = new ComPortOptionsWindow();
+                comPortOptionsWindow.Show();
+
+
+                this.Close();
+            }
+            else try
+                {
+                    using (StreamReader reader = new StreamReader("portOptions.txt", Encoding.Default))
+                    {
+                        musicPort.PortName = reader.ReadLine();
+                        musicPort.BaudRate = int.Parse(reader.ReadLine());
+                    }
+
+                    musicPort.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    ComPortOptionsWindow comPortOptionsWindow = new ComPortOptionsWindow();
+                    comPortOptionsWindow.Show();
+
+                    this.Close();
+                }
+        }
+
         bool isPlay = false;
         private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,9 +124,15 @@ namespace TechnoAudio
                     else MessageBox.Show($"Ringtone song0 in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
-                playPauseButton.Content = "Stop";
-                tmChecker.Play();
-                isPlay = true;
+
+                string data = timeline.GetForSendPlayData();
+                if (SendDataOnPort(data) == "ok play\r")
+                {
+                    playPauseButton.Content = "Stop";
+                    tmChecker.Play();
+                    isPlay = true;
+                }
+                else MessageBox.Show($"{data} - is not ok play", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -100,11 +142,22 @@ namespace TechnoAudio
             }
         }
 
-        //Удаление всех элементов
+        string SendDataOnPort(string data)
+        {
+            musicPort.WriteLine(data);
+            string returnData = musicPort.ReadLine();
+            return returnData;
+        }
+
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            Stop();
-            timeline.RemoveAllElements();
+            string data = "clear";
+            if (SendDataOnPort(data) == "ok clear\r")
+            {
+                Stop();
+                timeline.RemoveAllElements();
+            }
+            else MessageBox.Show($"{data} - is not ok clear", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void Stop()
@@ -124,66 +177,79 @@ namespace TechnoAudio
             return str;
         }
 
-        void AddElement(string text, int songNum, bool okRepeat = false)
+        void AddElement(string text, int songNum, string data, bool okRepeat = false)
         {
             string src = $@"{Environment.CurrentDirectory}\Media\song{songNum}.mp3";
             if (File.Exists(src))
             {
                 player.Source = new Uri(src, UriKind.Absolute);
                 player.Play();
-                if (okRepeat) timeline.AddElement(text, text);
-                else timeline.AddElement(text, StrWithoutNumbers(text));
+                if (okRepeat) timeline.AddElement(text, text, data);
+                else timeline.AddElement(text, StrWithoutNumbers(text), data);
             }
             else MessageBox.Show($"Ringtone song{songNum} in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         //Добавление элементов
         private void Congas1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas1.Content.ToString(), 1, true);
+            AddElement(congas1.Content.ToString(), 1, "co1", true);
 
         private void Congas2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas2.Content.ToString(), 2, true);
+            AddElement(congas2.Content.ToString(), 2, "co2", true);
 
         private void Cymbals1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals1.Content.ToString(), 3, true);
+            AddElement(cymbals1.Content.ToString(), 3, "cy1", true);
 
         private void Cymbals2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals2.Content.ToString(), 4, true);
+            AddElement(cymbals2.Content.ToString(), 4, "cy2", true);
 
         private void BassDrum_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bassDrum.Content.ToString(), 5);
+            AddElement(bassDrum.Content.ToString(), 5, "ba");
 
         private void Blank_Click(object sender, RoutedEventArgs e) =>
-            AddElement(Blank.Content.ToString(), 6);
+            AddElement(Blank.Content.ToString(), 6, "bl");
 
         private void Bongos1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos1.Content.ToString(), 7, true);
+            AddElement(bongos1.Content.ToString(), 7, "bo1", true);
 
         private void Bongos2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos2.Content.ToString(), 8, true);
+            AddElement(bongos2.Content.ToString(), 8, "bo2", true);
 
         private void Xylophone1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone1.Content.ToString(), 9);
+            AddElement(xylophone1.Content.ToString(), 9, "xy1");
 
         private void Xylophone2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone2.Content.ToString(), 10);
+            AddElement(xylophone2.Content.ToString(), 10, "xy2");
 
         private void Xylophone3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone3.Content.ToString(), 11);
+            AddElement(xylophone3.Content.ToString(), 11, "xy3");
 
         private void Xylophone4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone4.Content.ToString(), 12);
+            AddElement(xylophone4.Content.ToString(), 12, "xy4");
 
         private void Flute1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute1.Content.ToString(), 13);
+            AddElement(flute1.Content.ToString(), 13, "fl1");
 
         private void Flute2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute2.Content.ToString(), 14);
+            AddElement(flute2.Content.ToString(), 14, "fl2");
 
         private void Flute3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute3.Content.ToString(), 15);
+            AddElement(flute3.Content.ToString(), 15, "fl3");
 
         private void Flute4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute4.Content.ToString(), 16);
+            AddElement(flute4.Content.ToString(), 16, "fl4");
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.P)
+            {
+                if (musicPort.IsOpen) musicPort.Close();
+
+                ComPortOptionsWindow comPortOptionsWindow = new ComPortOptionsWindow();
+                comPortOptionsWindow.Show();
+
+                this.Close();
+            }
+        }
     }
 }
