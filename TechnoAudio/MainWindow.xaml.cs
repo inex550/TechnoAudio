@@ -134,12 +134,7 @@ namespace TechnoAudio
                 }
                 else MessageBox.Show($"{data} - is not ok play", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else
-            {
-                isPlay = false;
-                playPauseButton.Content = "Play";
-                tmChecker.Reset();
-            }
+            else Stop();
         }
 
         string SendDataOnPort(string data)
@@ -151,20 +146,22 @@ namespace TechnoAudio
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            string data = "clear";
-            if (SendDataOnPort(data) == "ok clear\r")
-            {
-                Stop();
-                timeline.RemoveAllElements();
-            }
-            else MessageBox.Show($"{data} - is not ok clear", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            Stop();
+            timeline.RemoveAllElements();
         }
 
         public void Stop()
         {
-            playPauseButton.Content = "Play";
-            tmChecker.Reset();
-            isPlay = false;
+            if (isPlay)
+                if (SendDataOnPort("interrupt") == "ok interrupt\r")
+                {
+                    isPlay = false;
+                    playPauseButton.Content = "Play";
+                    tmChecker.Reset();
+
+                    MessageBox.Show("Ok interrupt", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else MessageBox.Show("Not interrupt", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         string StrWithoutNumbers(string text)

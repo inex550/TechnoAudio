@@ -104,8 +104,12 @@ namespace TechnoAudio
                     if (tmElementLists[j, i].data != null)
                     {
                         forReturnStrData += $"{tmElementLists[j, i].data}";
-                        if (GetNextElement(j, i).data != null) 
-                            forReturnStrData += ",";
+                        try
+                        {
+                            if (GetNextElement(j, i).data != null)
+                                forReturnStrData += ",";
+                        }
+                        catch (NullReferenceException) { }
                     }
                     else break;
                 }

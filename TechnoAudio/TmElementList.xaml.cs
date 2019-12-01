@@ -41,9 +41,7 @@ namespace TechnoAudio
         public string textWihoutNum;
         public string text;
 
-        public int row;
-        public int column;
-
+        public int Id { get; private set; }
         public static int Count { get; private set; }
 
         public TmElementList(Timeline parent, double width, double height)
@@ -91,15 +89,13 @@ namespace TechnoAudio
 
         public void AddElement(string text, string textWihoutNum, string data, int row, int column)
         {
-            this.row = row;
-            this.column = column;
-
             this.textWihoutNum = textWihoutNum;
             this.text = text;
 
             this.data = data;
 
             Count += 1;
+            Id = Count;
 
             tmElement = new TimelineElement(this, width - 10, height - 30, text);
             tmCanvas.Children.Add(tmElement);
