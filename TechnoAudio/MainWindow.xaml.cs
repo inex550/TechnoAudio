@@ -96,6 +96,20 @@ namespace TechnoAudio
                     }
 
                     musicPort.Open();
+
+                    Thread readPortThread = new Thread(() =>
+                    {
+                        while (true)
+                        {
+                            string readedData = musicPort.ReadLine();
+
+                            if (readedData == "ok play\r")
+                                MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                            else if (readedData == "ok interrupt\r")
+                                MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }) { IsBackground = true };
+                    readPortThread.Start();
                 }
                 catch (Exception ex)
                 {
@@ -126,22 +140,13 @@ namespace TechnoAudio
                 }
 
                 string data = timeline.GetForSendPlayData();
-                if (SendDataOnPort(data) == "ok play\r")
-                {
-                    playPauseButton.Content = "Stop";
-                    tmChecker.Play();
-                    isPlay = true;
-                }
-                else MessageBox.Show($"{data} - is not ok play", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                musicPort.WriteLine(data);
+
+                playPauseButton.Content = "Stop";
+                tmChecker.Play();
+                isPlay = true;
             }
             else Stop();
-        }
-
-        string SendDataOnPort(string data)
-        {
-            musicPort.WriteLine(data);
-            string returnData = musicPort.ReadLine();
-            return returnData;
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
@@ -153,13 +158,13 @@ namespace TechnoAudio
         public void Stop()
         {
             if (isPlay)
-                if (SendDataOnPort("interrupt") == "ok interrupt\r")
-                {
-                    isPlay = false;
-                    playPauseButton.Content = "Play";
-                    tmChecker.Reset();
-                }
-                else MessageBox.Show("Not interrupt", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            {
+                musicPort.WriteLine("interrupt");
+
+                isPlay = false;
+                playPauseButton.Content = "Play";
+                tmChecker.Reset();
+            }
         }
 
         string StrWithoutNumbers(string text)
