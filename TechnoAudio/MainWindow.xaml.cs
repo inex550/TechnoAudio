@@ -158,8 +158,6 @@ namespace TechnoAudio
                     isPlay = false;
                     playPauseButton.Content = "Play";
                     tmChecker.Reset();
-
-                    MessageBox.Show("Ok interrupt", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else MessageBox.Show("Not interrupt", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
