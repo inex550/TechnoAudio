@@ -126,7 +126,7 @@ namespace TechnoAudio
                 }
 
                 string data = timeline.GetForSendPlayData();
-                if (SendDataOnPort(data) == "ok play\r\n")
+                if (SendDataOnPort(data) == "ok play\r")
                 {
                     playPauseButton.Content = "Stop";
                     tmChecker.Play();
