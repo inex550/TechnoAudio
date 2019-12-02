@@ -97,7 +97,7 @@ namespace TechnoAudio
 
                     musicPort.Open();
 
-                    Thread readPortThread = new Thread(() =>
+                    /*Thread readPortThread = new Thread(() =>
                     {
                         while (true)
                         {
@@ -109,7 +109,7 @@ namespace TechnoAudio
                                 MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }) { IsBackground = true };
-                    readPortThread.Start();
+                    readPortThread.Start();*/
                 }
                 catch (Exception ex)
                 {
