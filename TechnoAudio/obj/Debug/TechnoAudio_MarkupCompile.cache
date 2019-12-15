@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\obj\Debug\
+D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\
 TechnoAudio
 none
 false
 DEBUG;TRACE
-C:\Users\x_akh\source\repos\TechnoAudio\TechnoAudio\App.xaml
+D:\Projects\WPF\TechnoAudio\TechnoAudio\App.xaml
 71980497096
 
 11-255630696
-15-1287394113
+15-972910034
 ComPortOptionsWindow.xaml;MainWindow.xaml;Timeline.xaml;TimelineChecker.xaml;TimelineElement.xaml;TimelineMark.xaml;TmElementList.xaml;
 
 False

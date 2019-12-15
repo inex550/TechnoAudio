@@ -177,67 +177,68 @@ namespace TechnoAudio
             return str;
         }
 
-        void AddElement(string text, int songNum, string data, bool okRepeat = false)
+        List<Button> falsedButtons = new List<Button>();
+        void AddElement(string text, int songNum, string data, Button clickedButton, bool okRepeat = false)
         {
             string src = $@"{Environment.CurrentDirectory}\Media\song{songNum}.mp3";
             if (File.Exists(src))
             {
                 player.Source = new Uri(src, UriKind.Absolute);
                 player.Play();
-                if (okRepeat) timeline.AddElement(text, text, data);
-                else timeline.AddElement(text, StrWithoutNumbers(text), data);
+                if (okRepeat) timeline.AddElement(text, text, data, clickedButton);
+                else timeline.AddElement(text, StrWithoutNumbers(text), data, clickedButton);
             }
             else MessageBox.Show($"Ringtone song{songNum} in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         //Добавление элементов
         private void Congas1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas1.Content.ToString(), 1, "co1", true);
+            AddElement(congas1.Content.ToString(), 1, "co1", congas1, true);
 
         private void Congas2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas2.Content.ToString(), 2, "co2", true);
+            AddElement(congas2.Content.ToString(), 2, "co2", congas2, true);
 
         private void Cymbals1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals1.Content.ToString(), 3, "cy1", true);
+            AddElement(cymbals1.Content.ToString(), 3, "cy1", cymbals1, true);
 
         private void Cymbals2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals2.Content.ToString(), 4, "cy2", true);
+            AddElement(cymbals2.Content.ToString(), 4, "cy2", cymbals2, true);
 
         private void BassDrum_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bassDrum.Content.ToString(), 5, "ba");
+            AddElement(bassDrum.Content.ToString(), 5, "ba", bassDrum);
 
         private void Blank_Click(object sender, RoutedEventArgs e) =>
-            AddElement(Blank.Content.ToString(), 6, "bl");
+            AddElement(Blank.Content.ToString(), 6, "bl", Blank);
 
         private void Bongos1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos1.Content.ToString(), 7, "bo1", true);
+            AddElement(bongos1.Content.ToString(), 7, "bo1", bongos1, true);
 
         private void Bongos2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos2.Content.ToString(), 8, "bo2", true);
+            AddElement(bongos2.Content.ToString(), 8, "bo2", bongos2, true);
 
         private void Xylophone1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone1.Content.ToString(), 9, "xy1");
+            AddElement(xylophone1.Content.ToString(), 9, "xy1", xylophone1);
 
         private void Xylophone2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone2.Content.ToString(), 10, "xy2");
+            AddElement(xylophone2.Content.ToString(), 10, "xy2", xylophone2);
 
         private void Xylophone3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone3.Content.ToString(), 11, "xy3");
+            AddElement(xylophone3.Content.ToString(), 11, "xy3", xylophone3);
 
         private void Xylophone4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone4.Content.ToString(), 12, "xy4");
+            AddElement(xylophone4.Content.ToString(), 12, "xy4", xylophone4);
 
         private void Flute1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute1.Content.ToString(), 13, "fl1");
+            AddElement(flute1.Content.ToString(), 13, "fl1", flute1);
 
         private void Flute2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute2.Content.ToString(), 14, "fl2");
+            AddElement(flute2.Content.ToString(), 14, "fl2", flute2);
 
         private void Flute3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute3.Content.ToString(), 15, "fl3");
+            AddElement(flute3.Content.ToString(), 15, "fl3", flute3);
 
         private void Flute4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute4.Content.ToString(), 16, "fl4");
+            AddElement(flute4.Content.ToString(), 16, "fl4", flute4);
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

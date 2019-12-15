@@ -48,7 +48,8 @@ namespace TechnoAudio
         public int endRow = 0;
         public int endColumn = 0;
 
-        public void AddElement(string text, string textWihoutNum, string data)
+        List<Button> disabledButtons = new List<Button>();
+        public void AddElement(string text, string textWihoutNum, string data, Button btn)
         {
             if (endRow < 3 && text != "BLANK")
                 for (int i = 0; i <= endRow; i++)
@@ -65,6 +66,14 @@ namespace TechnoAudio
                 TimelineChecker.endSecond += 1;
                 endRow = 0;
             }
+
+            if (endRow >= tmCount - 1)
+                while (disabledButtons.Count != 0)
+                {
+                    disabledButtons[0].IsEnabled = true;
+                    disabledButtons.RemoveAt(0);
+                }
+
             if (endColumn >= intervalCount)
             {
                 MessageBox.Show("Timeline is full", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -72,6 +81,11 @@ namespace TechnoAudio
             }
 
             tmElementLists[endRow, endColumn].AddElement(text, textWihoutNum, data, endRow, endColumn);
+            if (endRow < tmCount - 1 && text != "BLANK")
+            {
+                btn.IsEnabled = false;
+                disabledButtons.Add(btn);
+            }
 
             endRow += 1;
         }
@@ -87,6 +101,12 @@ namespace TechnoAudio
                 endRow = 0;
                 endColumn = 0;
                 TimelineChecker.endSecond = 0;
+
+                while (disabledButtons.Count != 0)
+                {
+                    disabledButtons[0].IsEnabled = true;
+                    disabledButtons.RemoveAt(0);
+                }
             }
             else MessageBox.Show("timeline so empty", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
