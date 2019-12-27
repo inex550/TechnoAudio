@@ -66,11 +66,7 @@ namespace TechnoAudio
                     disabledGrids.RemoveAt(0);
                 }
 
-            if (endColumn >= intervalCount)
-            {
-                MessageBox.Show("Timeline is full", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
+            if (endColumn >= intervalCount) return;
 
             tmElementLists[endRow, endColumn].AddElement(imageSource, data);
             if (endRow < tmCount - 1 && !isBlank)
@@ -104,7 +100,6 @@ namespace TechnoAudio
                     disabledGrids.RemoveAt(0);
                 }
             }
-            else MessageBox.Show("timeline so empty", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public string GetForSendPlayData()
