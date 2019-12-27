@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using System.Windows.Threading;
 using System.IO.Ports;
+using System.Drawing;
 
 namespace TechnoAudio
 {
@@ -38,9 +39,6 @@ namespace TechnoAudio
 
         bool isActive = false;
 
-        public string textWihoutNum;
-        public string text;
-
         public int Id { get; private set; }
         public static int Count { get; private set; }
 
@@ -58,7 +56,7 @@ namespace TechnoAudio
         {
             border.Width = width;
             border.Height = height;
-
+            
             this.startSeconds = startSeconds;
             this.endSeconds = endSeconds;
         }
@@ -67,7 +65,7 @@ namespace TechnoAudio
         {
             if (isTmElement && !isActive)
             {
-                tmElement.elementRect.Fill = new SolidColorBrush(Colors.LightGray);
+                tmElement.smoke_grid.Opacity = 0.6;
                 isActive = true;
             }
         }
@@ -76,7 +74,7 @@ namespace TechnoAudio
         {
             if (isTmElement && isActive)
             {
-                tmElement.elementRect.Fill = new SolidColorBrush(Colors.Gray);
+                tmElement.smoke_grid.Opacity = 0;
                 isActive = false;
             }
         }
@@ -87,22 +85,19 @@ namespace TechnoAudio
         public double SecondToValue(double seconds) =>
             width * (seconds - startSeconds) / (endSeconds - startSeconds);
 
-        public void AddElement(string text, string textWihoutNum, string data, int row, int column)
+        public void AddElement(string imageSource, string data)
         {
-            this.textWihoutNum = textWihoutNum;
-            this.text = text;
-
             this.data = data;
 
             Count += 1;
             Id = Count;
 
-            tmElement = new TimelineElement(this, width - 10, height - 30, text);
+            tmElement = new TimelineElement(this, width - 10, height - 10, imageSource);
             tmCanvas.Children.Add(tmElement);
             isTmElement = true;
 
-            Canvas.SetLeft(tmElement, 5);
-            Canvas.SetTop(tmElement, 5);
+            Canvas.SetLeft(tmElement, 4);
+            Canvas.SetTop(tmElement, 4);
         }
 
         public void RemoveElement()

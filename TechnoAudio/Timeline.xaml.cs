@@ -27,11 +27,8 @@ namespace TechnoAudio
         public int endSeconds;
 
         public int tmCount;
-
-        const int marginConst = 2;
-
         public int intervalCount;
-        readonly List<TimelineMark> tmMarks = new List<TimelineMark>();
+
         public TmElementList[,] tmElementLists;
 
         public Timeline(int width, int height)
@@ -49,16 +46,9 @@ namespace TechnoAudio
         public int endColumn = 0;
 
         List<Button> disabledButtons = new List<Button>();
-        public void AddElement(string text, string textWihoutNum, string data, Button btn)
+        List<Grid> disabledGrids = new List<Grid>();
+        public void AddElement(string imageSource, string data, Button btn, Grid forGreyGrid, bool isBlank)
         {
-            if (endRow < 3 && text != "BLANK")
-                for (int i = 0; i <= endRow; i++)
-                    if (i != endRow && endColumn >= 0)
-                        if (textWihoutNum == tmElementLists[i, endColumn].textWihoutNum)
-                        {
-                            MessageBox.Show("You cannot repeat an item multiple times", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                            return;
-                        }
 
             if (endRow >= tmCount)
             {
@@ -71,7 +61,9 @@ namespace TechnoAudio
                 while (disabledButtons.Count != 0)
                 {
                     disabledButtons[0].IsEnabled = true;
+                    disabledGrids[0].Opacity = 0;
                     disabledButtons.RemoveAt(0);
+                    disabledGrids.RemoveAt(0);
                 }
 
             if (endColumn >= intervalCount)
@@ -80,11 +72,13 @@ namespace TechnoAudio
                 return;
             }
 
-            tmElementLists[endRow, endColumn].AddElement(text, textWihoutNum, data, endRow, endColumn);
-            if (endRow < tmCount - 1 && text != "BLANK")
+            tmElementLists[endRow, endColumn].AddElement(imageSource, data);
+            if (endRow < tmCount - 1 && !isBlank)
             {
                 btn.IsEnabled = false;
+                forGreyGrid.Opacity = 0.6;
                 disabledButtons.Add(btn);
+                disabledGrids.Add(forGreyGrid);
             }
 
             endRow += 1;
@@ -105,7 +99,9 @@ namespace TechnoAudio
                 while (disabledButtons.Count != 0)
                 {
                     disabledButtons[0].IsEnabled = true;
+                    disabledGrids[0].Opacity = 0;
                     disabledButtons.RemoveAt(0);
+                    disabledGrids.RemoveAt(0);
                 }
             }
             else MessageBox.Show("timeline so empty", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -151,62 +147,28 @@ namespace TechnoAudio
             return tmElementLists[row, column];
         }
 
-        public void Setup(int startSeconds, int endSeconds, int space, int tmCount)
+        public void Setup(int startSeconds, int endSeconds, int tmCount)
         {
             this.startSeconds = startSeconds;
             this.endSeconds = endSeconds;
 
             this.tmCount = tmCount;
 
-            TimelineMark tmStart = new TimelineMark(startSeconds);
-            tmMarks.Add(tmStart);
-            tmCanvas.Children.Add(tmStart);
-
-            this.intervalCount = endSeconds - startSeconds;
-            for (int i = 1; i <= intervalCount - 1; i++)
-            {
-                TimelineMark tm = new TimelineMark(startSeconds + i);
-                tmMarks.Add(tm);
-                tmCanvas.Children.Add(tm);
-            }
-
-            TimelineMark tmEnd = new TimelineMark(endSeconds);
-            tmMarks.Add(tmEnd);
-            tmCanvas.Children.Add(tmEnd);
-
-            for (int i = 0; i < tmMarks.Count; i++)
-            {
-                Canvas.SetLeft(tmMarks[i], space * i + marginConst);
-                Canvas.SetTop(tmMarks[i], marginConst);
-            }
-
-            /*
-            TmElementList tmElementList = new TmElementList(this, Canvas.GetLeft(tmEnd) - 1, (height / tmCount) - 10);
-            tmElementList.Setup(startSeconds, endSeconds);
-
-            Canvas.SetLeft(tmElementList, 2);
-            Canvas.SetTop(tmElementList, fromTop);
-
-            fromTop += (height / tmCount) - 10;
-
-            tmElementLists.Add(tmElementList);
-            tmCanvas.Children.Add(tmElementList);
-            */
+            intervalCount = 6;
 
             Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             Arrange(new Rect(0, 0, width, height));
 
             tmElementLists = new TmElementList[tmCount, intervalCount];
 
-            double fromTop = (int)tmStart.ActualHeight + marginConst;
-            double fromLeft = Canvas.GetLeft(tmStart);
-
+            double fromTop = 0;
+            double fromLeft = 0;
 
             for (int i = 0; i < tmCount; i++)
             {
                 for (int j = 0; j < intervalCount; j++)
                 {
-                    tmElementLists[i, j] = new TmElementList(this, width / intervalCount - 5.8, height / tmCount);
+                    tmElementLists[i, j] = new TmElementList(this, width / intervalCount, height / tmCount);
                     tmElementLists[i, j].Setup(startSeconds, endSeconds);
 
                     tmCanvas.Children.Add(tmElementLists[i, j]);
@@ -214,10 +176,10 @@ namespace TechnoAudio
                     Canvas.SetTop(tmElementLists[i, j], fromTop);
                     Canvas.SetLeft(tmElementLists[i, j], fromLeft);
 
-                    fromLeft += width / intervalCount - 5.8;
+                    fromLeft += width / intervalCount;
                 }
-                fromTop += height / tmCount - 10;
-                fromLeft = marginConst;
+                fromTop += height / tmCount;
+                fromLeft = 0;
             }
         }
     }

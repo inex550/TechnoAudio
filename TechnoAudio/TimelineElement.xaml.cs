@@ -25,9 +25,9 @@ namespace TechnoAudio
         public double height;
         public double width;
 
-        public string text;
+        public string imageSource;
 
-        public TimelineElement(TmElementList parent, double width, double height, string text)
+        public TimelineElement(TmElementList parent, double width, double height, string imageSource)
         {
             InitializeComponent();
 
@@ -37,9 +37,14 @@ namespace TechnoAudio
             tmGridElement.Width = width;
             tmGridElement.Height = height;
 
-            textOnElemtnt.Text = text;
+            this.imageSource = imageSource;
 
-            this.text = text;
+            element_image.Source = new BitmapImage(new Uri(imageSource, UriKind.Relative));
+
+            //Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            //Arrange(new Rect(0, 0, width, height));
+
+            //smoke_grid.Width = element_image.ActualWidth;
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Threading;
 using System.IO;
+using System.Drawing;
 
 namespace TechnoAudio
 {
@@ -41,8 +42,8 @@ namespace TechnoAudio
                 UnloadedBehavior = MediaState.Manual
             };
 
-            timeline = new Timeline(1900, 500);
-            timeline.Setup(0, 6, 310, 3);
+            timeline = new Timeline(1800, 524);
+            timeline.Setup(0, 6, 3);
 
             tmChecker = new TimelineChecker(timeline, timeline.width, this)
             {
@@ -97,19 +98,19 @@ namespace TechnoAudio
 
                     musicPort.Open();
 
-                    /*Thread readPortThread = new Thread(() =>
-                    {
-                        while (true)
-                        {
-                            string readedData = musicPort.ReadLine();
+                    //Thread readPortThread = new Thread(() =>
+                    //{
+                    //    while (true)
+                    //    {
+                    //        string readedData = musicPort.ReadLine();
 
-                            if (readedData == "ok play\r")
-                                MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                            else if (readedData == "ok interrupt\r")
-                                MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                    }) { IsBackground = true };
-                    readPortThread.Start();*/
+                    //        if (readedData == "ok play\r")
+                    //            MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //        else if (readedData == "ok interrupt\r")
+                    //            MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //    }
+                    //}) { IsBackground = true };
+                    //readPortThread.Start();
                 }
                 catch (Exception ex)
                 {
@@ -177,68 +178,66 @@ namespace TechnoAudio
             return str;
         }
 
-        List<Button> falsedButtons = new List<Button>();
-        void AddElement(string text, int songNum, string data, Button clickedButton, bool okRepeat = false)
+        void AddElement(string imageSource, int songNum, string data, Button clickedButton, Grid forDisableGrid, bool isBlank = false)
         {
             string src = $@"{Environment.CurrentDirectory}\Media\song{songNum}.mp3";
             if (File.Exists(src))
             {
                 player.Source = new Uri(src, UriKind.Absolute);
                 player.Play();
-                if (okRepeat) timeline.AddElement(text, text, data, clickedButton);
-                else timeline.AddElement(text, StrWithoutNumbers(text), data, clickedButton);
+                timeline.AddElement(imageSource, data, clickedButton, forDisableGrid, isBlank);
             }
             else MessageBox.Show($"Ringtone song{songNum} in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         //Добавление элементов
         private void Congas1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas1.Content.ToString(), 1, "co1", congas1, true);
+            AddElement("conga1.png", 1, "co1", congas1, congas1_grid);
 
         private void Congas2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(congas2.Content.ToString(), 2, "co2", congas2, true);
+            AddElement("conga2.png", 2, "co2", congas2, congas2_grid);
 
         private void Cymbals1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals1.Content.ToString(), 3, "cy1", cymbals1, true);
+            AddElement("cymbal1.png", 3, "cy1", cymbals1, cymbals1_grid);
 
         private void Cymbals2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(cymbals2.Content.ToString(), 4, "cy2", cymbals2, true);
+            AddElement("cymbal2.png", 4, "cy2", cymbals2, cymbals2_grid);
 
         private void BassDrum_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bassDrum.Content.ToString(), 5, "ba", bassDrum);
+            AddElement("bass drum.png", 5, "ba", bassDrum, bassDrum_grid);
 
         private void Blank_Click(object sender, RoutedEventArgs e) =>
-            AddElement(Blank.Content.ToString(), 6, "bl", Blank);
+            AddElement("blank.png", 6, "bl", Blank, null, true);
 
         private void Bongos1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos1.Content.ToString(), 7, "bo1", bongos1, true);
+            AddElement("bongos1.png", 7, "bo1", bongos1, bongos1_grid);
 
         private void Bongos2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(bongos2.Content.ToString(), 8, "bo2", bongos2, true);
+            AddElement("bongos2.png", 8, "bo2", bongos2, bongos2_grid);
 
         private void Xylophone1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone1.Content.ToString(), 9, "xy1", xylophone1);
+            AddElement("xylophone1.png", 9, "xy1", xylophone1, xylophone1_grid);
 
         private void Xylophone2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone2.Content.ToString(), 10, "xy2", xylophone2);
+            AddElement("xylophone2.png", 10, "xy2", xylophone2, xylophone2_grid);
 
         private void Xylophone3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone3.Content.ToString(), 11, "xy3", xylophone3);
+            AddElement("xylophone3.png", 11, "xy3", xylophone3, xylophone3_grid);
 
         private void Xylophone4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(xylophone4.Content.ToString(), 12, "xy4", xylophone4);
+            AddElement("xylophone4.png", 12, "xy4", xylophone4, xylophone4_grid);
 
         private void Flute1_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute1.Content.ToString(), 13, "fl1", flute1);
+            AddElement("flute1.png", 13, "fl1", flute1, flute1_grid);
 
         private void Flute2_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute2.Content.ToString(), 14, "fl2", flute2);
+            AddElement("flute2.png", 14, "fl2", flute2, flute2_grid);
 
         private void Flute3_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute3.Content.ToString(), 15, "fl3", flute3);
+            AddElement("flute3.png", 15, "fl3", flute3, flute3_grid);
 
         private void Flute4_Click(object sender, RoutedEventArgs e) =>
-            AddElement(flute4.Content.ToString(), 16, "fl4", flute4);
+            AddElement("flute4.png", 16, "fl4", flute4, flute4_grid);
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,9 +74,6 @@
     <Compile Include="TimelineElement.xaml.cs">
       <DependentUpon>TimelineElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TimelineMark.xaml.cs">
-      <DependentUpon>TimelineMark.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TmElementList.xaml.cs">
       <DependentUpon>TmElementList.xaml</DependentUpon>
     </Compile>
@@ -104,10 +102,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TimelineElement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TimelineMark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +139,29 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bass drum.png" />
+    <Resource Include="bongos1.png" />
+    <Resource Include="bongos2.png" />
+    <Resource Include="conga1.png" />
+    <Resource Include="conga2.png" />
+    <Resource Include="cymbal1.png" />
+    <Resource Include="cymbal2.png" />
+    <Resource Include="flute4.png" />
+    <Resource Include="flute2.png" />
+    <Resource Include="flute3.png" />
+    <Resource Include="flute1.png" />
+    <Resource Include="xylophone1.png" />
+    <Resource Include="xylophone2.png" />
+    <Resource Include="xylophone3.png" />
+    <Resource Include="xylophone4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="blank.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,7 @@ namespace TechnoAudio
             timerSlider.Maximum = tm.endSeconds;
             timerSlider.Value = tm.startSeconds;
 
-            timerSlider.Width = width - 35;
+            timerSlider.Width = width;
         }
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -54,7 +54,6 @@ namespace TechnoAudio
                 mainWindow.Stop();
             }
 
-            SetTime((int)timerSeconds);
             timerSlider.Value = timerSeconds;
 
             timerSeconds += 0.01;
@@ -71,19 +70,6 @@ namespace TechnoAudio
 
             timerSlider.Value = timerSlider.Minimum;
             timerSeconds = timerSlider.Minimum;
-        }
-
-        public void SetTime(int seconds)
-        {
-            string m = (seconds / 60).ToString();
-            if (m.Length < 2)
-                m = "0" + m;
-            string s = (seconds % 60).ToString();
-            if (s.Length < 2)
-                s = "0" + s;
-
-            timerText.Text = m + ":" + s;
-
         }
 
     }

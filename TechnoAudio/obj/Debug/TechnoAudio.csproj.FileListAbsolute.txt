@@ -44,7 +44,6 @@ D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\MainWindow.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\Timeline.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineChecker.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineElement.g.cs
-D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineMark.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TmElementList.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\App.g.cs
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TechnoAudio_MarkupCompile.cache
@@ -54,7 +53,6 @@ D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\MainWindow.baml
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\Timeline.baml
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineChecker.baml
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineElement.baml
-D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TimelineMark.baml
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TmElementList.baml
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TechnoAudio.g.resources
 D:\Projects\WPF\TechnoAudio\TechnoAudio\obj\Debug\TechnoAudio.Properties.Resources.resources

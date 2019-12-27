@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:TechnoAudio"
              mc:Ignorable="d">
     <Grid x:Name="tmGridElement">
-        <Rectangle x:Name="elementRect" Fill="Gray"/>
-        <TextBlock x:Name="textOnElemtnt" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Image x:Name="element_image"/>
+        <Grid x:Name="smoke_grid" Background="Black" Opacity="0"/>
     </Grid>
 </UserControl>

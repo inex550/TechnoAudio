@@ -10,56 +10,117 @@
         KeyDown="Window_KeyDown" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="ButtonDefault">
-            <Setter Property="Control.Margin" Value="4"/>
+            <Setter Property="Control.Margin" Value="2"/>
         </Style>
         
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="149*"/>
-            <RowDefinition Height="207*"/>
-            <RowDefinition Height="43*"/>
+            <RowDefinition Height="160*"/>
+            <RowDefinition Height="240*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Margin="58, 10, 58, 5">
             <UniformGrid Rows="2">
                 <UniformGrid Columns="8">
-                    <Button x:Name="congas1" Content="CONGAS 1"
-                            Style="{StaticResource ButtonDefault}" Click="Congas1_Click"/>
-                    <Button x:Name="congas2" Content="CONGAS 2"
-                            Style="{StaticResource ButtonDefault}" Click="Congas2_Click"/>
-                    <Button x:Name="cymbals1" Content="CYMBALS 1"
-                            Style="{StaticResource ButtonDefault}" Click="Cymbals1_Click"/>
-                    <Button x:Name="cymbals2" Content="CYMBALS 2"
-                            Style="{StaticResource ButtonDefault}" Click="Cymbals2_Click"/>
-                    <Button x:Name="bassDrum" Content="BASS DRUM"
-                            Style="{StaticResource ButtonDefault}" Click="BassDrum_Click"/>
-                    <Button x:Name="Blank" Content="BLANK"
-                            Style="{StaticResource ButtonDefault}" Click="Blank_Click"/>
-                    <Button x:Name="bongos1" Content="BONGOS 1"
-                            Style="{StaticResource ButtonDefault}" Click="Bongos1_Click"/>
-                    <Button x:Name="bongos2" Content="BONGOS 2"
-                            Style="{StaticResource ButtonDefault}" Click="Bongos2_Click"/>
+                    <Button x:Name="congas1" Style="{StaticResource ButtonDefault}" Click="Congas1_Click">
+                        <Grid>
+                            <Image x:Name="congas1_image" Source="conga1.png"/>
+                            <Grid x:Name="congas1_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="congas2" Style="{StaticResource ButtonDefault}" Click="Congas2_Click">
+                        <Grid>
+                            <Image x:Name="congas2_image" Source="conga2.png"/>
+                            <Grid x:Name="congas2_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="cymbals1" Style="{StaticResource ButtonDefault}" Click="Cymbals1_Click">
+                        <Grid>
+                            <Image x:Name="cymbals1_image" Source="cymbal1.png"/>
+                            <Grid x:Name="cymbals1_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="cymbals2" Style="{StaticResource ButtonDefault}" Click="Cymbals2_Click">
+                        <Grid>
+                            <Image x:Name="cymbals2_image" Source="cymbal2.png"/>
+                            <Grid x:Name="cymbals2_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="bassDrum" Style="{StaticResource ButtonDefault}" Click="BassDrum_Click">
+                        <Grid>
+                            <Image x:Name="bassDrum_image" Source="bass drum.png"/>
+                            <Grid x:Name="bassDrum_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="bongos1" Style="{StaticResource ButtonDefault}" Click="Bongos1_Click">
+                        <Grid>
+                            <Image x:Name="bongos1_image" Source="bongos1.png"/>
+                            <Grid x:Name="bongos1_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="bongos2" Style="{StaticResource ButtonDefault}" Click="Bongos2_Click">
+                        <Grid>
+                            <Image x:Name="bongos2_image" Source="bongos2.png"/>
+                            <Grid x:Name="bongos2_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="Blank" Style="{StaticResource ButtonDefault}" Click="Blank_Click">
+                        <Image x:Name="blank_image" Source="blank.png"/>
+                    </Button>
                 </UniformGrid>
                 <UniformGrid Columns="8">
-                    <Button x:Name="xylophone1" Content="XYLOPHONE 1"
-                            Style="{StaticResource ButtonDefault}" Click="Xylophone1_Click"/>
-                    <Button x:Name="xylophone2" Content="XYLOPHONE 2"
-                            Style="{StaticResource ButtonDefault}" Click="Xylophone2_Click"/>
-                    <Button x:Name="xylophone3" Content="XYLOPHONE 3"
-                            Style="{StaticResource ButtonDefault}" Click="Xylophone3_Click"/>
-                    <Button x:Name="xylophone4" Content="XYLOPHONE 4"
-                            Style="{StaticResource ButtonDefault}" Click="Xylophone4_Click"/>
-                    <Button x:Name="flute1" Content="FLUTE 1"
-                            Style="{StaticResource ButtonDefault}" Click="Flute1_Click"/>
-                    <Button x:Name="flute2" Content="FLUTE 2"
-                            Style="{StaticResource ButtonDefault}" Click="Flute2_Click"/>
-                    <Button x:Name="flute3" Content="FLUTE 3"
-                            Style="{StaticResource ButtonDefault}" Click="Flute3_Click"/>
-                    <Button x:Name="flute4" Content="FLUTE 4"
-                            Style="{StaticResource ButtonDefault}" Click="Flute4_Click"/>
+                    <Button x:Name="xylophone1" Style="{StaticResource ButtonDefault}" Click="Xylophone1_Click">
+                        <Grid>
+                            <Image x:Name="xylophone1_image" Source="xylophone1.png"/>
+                            <Grid x:Name="xylophone1_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="xylophone2" Style="{StaticResource ButtonDefault}" Click="Xylophone2_Click">
+                        <Grid>
+                            <Image x:Name="xylophone2_image" Source="xylophone2.png"/>
+                            <Grid x:Name="xylophone2_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="xylophone3" Style="{StaticResource ButtonDefault}" Click="Xylophone3_Click">
+                        <Grid>
+                            <Image x:Name="xylophone3_image" Source="xylophone3.png"/>
+                            <Grid x:Name="xylophone3_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="xylophone4" Style="{StaticResource ButtonDefault}" Click="Xylophone4_Click">
+                        <Grid>
+                            <Image x:Name="xylophone4_image" Source="xylophone4.png"/>
+                            <Grid x:Name="xylophone4_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="flute1" Style="{StaticResource ButtonDefault}" Click="Flute1_Click">
+                        <Grid>
+                            <Image x:Name="flute1_image" Source="flute1.png"/>
+                            <Grid x:Name="flute1_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="flute2" Style="{StaticResource ButtonDefault}" Click="Flute2_Click">
+                        <Grid>
+                            <Image x:Name="flute2_image" Source="flute2.png"/>
+                            <Grid x:Name="flute2_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="flute3" Style="{StaticResource ButtonDefault}" Click="Flute3_Click">
+                        <Grid>
+                            <Image x:Name="flute3_image" Source="flute3.png"/>
+                            <Grid x:Name="flute3_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="flute4" Style="{StaticResource ButtonDefault}" Click="Flute4_Click">
+                        <Grid>
+                            <Image x:Name="flute4_image" Source="flute4.png"/>
+                            <Grid x:Name="flute4_grid" Background="Black" Opacity="0"/>
+                        </Grid>
+                    </Button>
                 </UniformGrid>
             </UniformGrid>
         </Grid>
@@ -72,9 +133,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="playPauseButton" Content="Play" FontSize="25" 
+            <Button x:Name="playPauseButton" Content="Play" FontSize="25"  Background="#80b258" Foreground="White"
                     Grid.Column="1" Width="200" Click="PlayPauseButton_Click"/>
-            <Button x:Name="stopButton" Content="Clear" FontSize="25"
+            <Button x:Name="stopButton" Content="Clear" FontSize="25" Background="#6dd0f7" Foreground="White"
                     Grid.Column="2" Margin="25, 0, 0, 0" Width="200" Click="StopButton_Click"/>
         </Grid>
     </Grid>
