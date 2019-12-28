@@ -178,66 +178,66 @@ namespace TechnoAudio
             return str;
         }
 
-        void AddElement(string imageSource, int songNum, string data, Button clickedButton, Grid forDisableGrid, bool isBlank = false)
+        void AddElement(string imageSource, int songNum, string data, Button[] clickedButtons, Grid[] forDisableGrids, bool isBlank = false)
         {
             string src = $@"{Environment.CurrentDirectory}\Media\song{songNum}.mp3";
             if (File.Exists(src))
             {
                 player.Source = new Uri(src, UriKind.Absolute);
                 player.Play();
-                timeline.AddElement(imageSource, data, clickedButton, forDisableGrid, isBlank);
+                timeline.AddElement(imageSource, data, clickedButtons, forDisableGrids, isBlank);
             }
             else MessageBox.Show($"Ringtone song{songNum} in folder Media does not exist", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         //Добавление элементов
         private void Congas1_Click(object sender, RoutedEventArgs e) =>
-            AddElement("conga1.png", 1, "co1", congas1, congas1_grid);
+            AddElement("conga1.png", 1, "co1", new Button[] { congas1 }, new Grid[] { congas1_grid });
 
         private void Congas2_Click(object sender, RoutedEventArgs e) =>
-            AddElement("conga2.png", 2, "co2", congas2, congas2_grid);
+            AddElement("conga2.png", 2, "co2", new Button[] { congas2 }, new Grid[] { congas2_grid });
 
         private void Cymbals1_Click(object sender, RoutedEventArgs e) =>
-            AddElement("cymbal1.png", 3, "cy1", cymbals1, cymbals1_grid);
+            AddElement("cymbal1.png", 3, "cy1", new Button[] { cymbals1 }, new Grid[] { cymbals1_grid });
 
         private void Cymbals2_Click(object sender, RoutedEventArgs e) =>
-            AddElement("cymbal2.png", 4, "cy2", cymbals2, cymbals2_grid);
+            AddElement("cymbal2.png", 4, "cy2", new Button[] { cymbals2 }, new Grid[] { cymbals2_grid });
 
         private void BassDrum_Click(object sender, RoutedEventArgs e) =>
-            AddElement("bass drum.png", 5, "ba", bassDrum, bassDrum_grid);
+            AddElement("bass drum.png", 5, "ba", new Button[] { bassDrum }, new Grid[] { bassDrum_grid });
 
         private void Blank_Click(object sender, RoutedEventArgs e) =>
-            AddElement("blank.png", 6, "bl", Blank, null, true);
+            AddElement("blank.png", 6, "bl", null, null, true);
 
         private void Bongos1_Click(object sender, RoutedEventArgs e) =>
-            AddElement("bongos1.png", 7, "bo1", bongos1, bongos1_grid);
+            AddElement("bongos1.png", 7, "bo1", new Button[] { bongos1 }, new Grid[] { bongos1_grid });
 
         private void Bongos2_Click(object sender, RoutedEventArgs e) =>
-            AddElement("bongos2.png", 8, "bo2", bongos2, bongos2_grid);
+            AddElement("bongos2.png", 8, "bo2", new Button[] { bongos2 }, new Grid[] { bongos2_grid });
 
         private void Xylophone1_Click(object sender, RoutedEventArgs e) =>
-            AddElement("xylophone1.png", 9, "xy1", xylophone1, xylophone1_grid);
+            AddElement("xylophone1.png", 9, "xy1", new Button[] { xylophone1, xylophone2, xylophone3, xylophone4 }, new Grid[] { xylophone1_grid, xylophone2_grid, xylophone3_grid, xylophone4_grid });
 
         private void Xylophone2_Click(object sender, RoutedEventArgs e) =>
-            AddElement("xylophone2.png", 10, "xy2", xylophone2, xylophone2_grid);
+            AddElement("xylophone2.png", 10, "xy2", new Button[] { xylophone1, xylophone2, xylophone3, xylophone4 }, new Grid[] { xylophone1_grid, xylophone2_grid, xylophone3_grid, xylophone4_grid });
 
         private void Xylophone3_Click(object sender, RoutedEventArgs e) =>
-            AddElement("xylophone3.png", 11, "xy3", xylophone3, xylophone3_grid);
+            AddElement("xylophone3.png", 11, "xy3", new Button[] { xylophone1, xylophone2, xylophone3, xylophone4 }, new Grid[] { xylophone1_grid, xylophone2_grid, xylophone3_grid, xylophone4_grid });
 
         private void Xylophone4_Click(object sender, RoutedEventArgs e) =>
-            AddElement("xylophone4.png", 12, "xy4", xylophone4, xylophone4_grid);
+            AddElement("xylophone4.png", 12, "xy4", new Button[] { xylophone1, xylophone2, xylophone3, xylophone4 }, new Grid[] { xylophone1_grid, xylophone2_grid, xylophone3_grid, xylophone4_grid });
 
         private void Flute1_Click(object sender, RoutedEventArgs e) =>
-            AddElement("flute1.png", 13, "fl1", flute1, flute1_grid);
+            AddElement("flute1.png", 13, "fl1", new Button[] { flute1, flute2, flute3, flute4 }, new Grid[] { flute1_grid, flute2_grid, flute3_grid, flute4_grid });
 
         private void Flute2_Click(object sender, RoutedEventArgs e) =>
-            AddElement("flute2.png", 14, "fl2", flute2, flute2_grid);
+            AddElement("flute2.png", 14, "fl2", new Button[] { flute1, flute2, flute3, flute4 }, new Grid[] { flute1_grid, flute2_grid, flute3_grid, flute4_grid });
 
         private void Flute3_Click(object sender, RoutedEventArgs e) =>
-            AddElement("flute3.png", 15, "fl3", flute3, flute3_grid);
+            AddElement("flute3.png", 15, "fl3", new Button[] { flute1, flute2, flute3, flute4 }, new Grid[] { flute1_grid, flute2_grid, flute3_grid, flute4_grid });
 
         private void Flute4_Click(object sender, RoutedEventArgs e) =>
-            AddElement("flute4.png", 16, "fl4", flute4, flute4_grid);
+            AddElement("flute4.png", 16, "fl4", new Button[] { flute1, flute2, flute3, flute4 }, new Grid[] { flute1_grid, flute2_grid, flute3_grid, flute4_grid });
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

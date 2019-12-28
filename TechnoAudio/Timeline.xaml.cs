@@ -47,7 +47,7 @@ namespace TechnoAudio
 
         List<Button> disabledButtons = new List<Button>();
         List<Grid> disabledGrids = new List<Grid>();
-        public void AddElement(string imageSource, string data, Button btn, Grid forGreyGrid, bool isBlank)
+        public void AddElement(string imageSource, string data, Button[] btns, Grid[] forGreyGrids, bool isBlank)
         {
 
             if (endRow >= tmCount)
@@ -71,10 +71,13 @@ namespace TechnoAudio
             tmElementLists[endRow, endColumn].AddElement(imageSource, data);
             if (endRow < tmCount - 1 && !isBlank)
             {
-                btn.IsEnabled = false;
-                forGreyGrid.Opacity = 0.6;
-                disabledButtons.Add(btn);
-                disabledGrids.Add(forGreyGrid);
+                for (int i = 0; i < btns.Length; i++)
+                {
+                    btns[i].IsEnabled = false;
+                    forGreyGrids[i].Opacity = 0.6;
+                    disabledButtons.Add(btns[i]);
+                    disabledGrids.Add(forGreyGrids[i]);
+                }
             }
 
             endRow += 1;
