@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 using System.Windows.Threading;
@@ -39,12 +41,12 @@ namespace TechnoAudio
 
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(TimerTick);
-            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Interval = TimeSpan.FromSeconds(0.01);
         }
 
         private void TimerTick(object sender, EventArgs e)
         {
-            if (timerSeconds > endSecond + 1)
+            if (timerSeconds >= endSecond + 1)
             {
                 timerSlider.Value = timerSlider.Minimum;
                 timerSeconds = timerSlider.Minimum;
@@ -55,8 +57,7 @@ namespace TechnoAudio
             }
 
             timerSlider.Value = timerSeconds;
-
-            timerSeconds += 0.01;
+            timerSeconds += 0.015;
         }
 
         public void Play()
