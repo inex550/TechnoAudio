@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -19,6 +20,8 @@ namespace TechnoAudio
         readonly MainWindow mainWindow;
 
         public static int endSecond = 0;
+
+        double sliderSpead;
 
         public TimelineChecker(Timeline tm, double width, MainWindow mainWindow)
         {
@@ -42,6 +45,11 @@ namespace TechnoAudio
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(TimerTick);
             timer.Interval = TimeSpan.FromSeconds(0.01);
+
+            using (StreamReader reader = new StreamReader("sliderSpead.txt"))
+            {
+                sliderSpead = double.Parse(reader.ReadLine());
+            }
         }
 
         private void TimerTick(object sender, EventArgs e)
@@ -57,7 +65,7 @@ namespace TechnoAudio
             }
 
             timerSlider.Value = timerSeconds;
-            timerSeconds += 0.017;
+            timerSeconds += sliderSpead;
         }
 
         public void Play()
