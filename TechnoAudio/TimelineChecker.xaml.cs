@@ -57,7 +57,7 @@ namespace TechnoAudio
             }
 
             timerSlider.Value = timerSeconds;
-            timerSeconds += 0.016;
+            timerSeconds += 0.017;
         }
 
         public void Play()

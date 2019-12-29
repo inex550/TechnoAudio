@@ -49,8 +49,6 @@ namespace TechnoAudio
                 selectedPort.Open();
                 selectedPort.Close();
 
-                MessageBox.Show("Всё работает!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
                 using (StreamWriter sw = new StreamWriter("portOptions.txt", false, Encoding.Default))
                 {
                     sw.WriteLine((string)COMPortList.SelectedItem);
