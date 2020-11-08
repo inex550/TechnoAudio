@@ -85,7 +85,6 @@ namespace TechnoAudio
                 ComPortOptionsWindow comPortOptionsWindow = new ComPortOptionsWindow();
                 comPortOptionsWindow.Show();
 
-
                 this.Close();
             }
             else try
@@ -98,12 +97,14 @@ namespace TechnoAudio
 
                     musicPort.Open();
 
+                    
+
                     //Thread readPortThread = new Thread(() =>
                     //{
                     //    while (true)
                     //    {
                     //        string readedData = musicPort.ReadLine();
-
+                    //
                     //        if (readedData == "ok play\r")
                     //            MessageBox.Show(readedData, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                     //        else if (readedData == "ok interrupt\r")
@@ -177,7 +178,10 @@ namespace TechnoAudio
         {
             if (isPlay)
             {
-                musicPort.WriteLine("interrupt");
+                try
+                {
+                    musicPort.WriteLine("interrupt");
+                } catch (InvalidOperationException) { }
 
                 isPlay = false;
                 playPauseButton.Content = "Play";

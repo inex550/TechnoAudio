@@ -6,7 +6,6 @@ C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\bin\Release\MaterialDesignTh
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\bin\Release\MaterialDesignColors.pdb
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\bin\Release\MaterialDesignThemes.Wpf.pdb
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\bin\Release\MaterialDesignThemes.Wpf.xml
-C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.csprojAssemblyReference.cache
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\ComPortOptionsWindow.g.cs
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\MainWindow.g.cs
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\Timeline.g.cs
