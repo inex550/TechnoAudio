@@ -28,3 +28,4 @@ C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.cspr
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.csproj.CopyComplete
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.exe
 C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.pdb
+C:\Users\x_akh\Desktop\Temp\TechnoAudio\TechnoAudio\obj\Release\TechnoAudio.csprojAssemblyReference.cache

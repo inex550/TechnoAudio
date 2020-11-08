@@ -97,7 +97,11 @@ namespace TechnoAudio
 
                     musicPort.Open();
 
-                    
+                    musicPort.DtrEnable = false;
+
+                    Thread.Sleep(100);
+
+                    musicPort.DtrEnable = true;
 
                     //Thread readPortThread = new Thread(() =>
                     //{
@@ -146,6 +150,12 @@ namespace TechnoAudio
                 {
                     musicPort.WriteLine(data);
 
+                    musicPort.DtrEnable = false;
+
+                    Thread.Sleep(100);
+
+                    musicPort.DtrEnable = true;
+
                     playPauseButton.Content = "Stop";
                     tmChecker.Play();
                     isPlay = true;
@@ -158,6 +168,12 @@ namespace TechnoAudio
                     {
                         musicPort.Open();
                         musicPort.Write(data);
+
+                        musicPort.DtrEnable = false;
+
+                        Thread.Sleep(100);
+
+                        musicPort.DtrEnable = true;
 
                         playPauseButton.Content = "Stop";
                         tmChecker.Play();
