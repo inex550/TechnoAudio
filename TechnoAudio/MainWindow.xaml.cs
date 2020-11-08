@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -141,11 +141,28 @@ namespace TechnoAudio
                 }
 
                 string data = timeline.GetForSendPlayData();
-                musicPort.WriteLine(data);
+                try
+                {
+                    musicPort.WriteLine(data);
 
-                playPauseButton.Content = "Stop";
-                tmChecker.Play();
-                isPlay = true;
+                    playPauseButton.Content = "Stop";
+                    tmChecker.Play();
+                    isPlay = true;
+                } 
+                catch(InvalidOperationException) 
+                {
+                    musicPort.Close();
+
+                    try
+                    {
+                        musicPort.Open();
+                        musicPort.Write(data);
+
+                        playPauseButton.Content = "Stop";
+                        tmChecker.Play();
+                        isPlay = true;
+                    } catch(IOException) { }
+                }
             }
             else Stop();
         }
